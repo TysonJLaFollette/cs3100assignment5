@@ -24,7 +24,7 @@ std::vector<char*> parseCommand(std::string commandToParse){//turns a string int
 		words.push_back(word);
 	}
 	std::vector<char*> args;
-	for (int i = 0; i < words.size(); i++){
+	for (unsigned int i = 0; i < words.size(); i++){
 		args.push_back(const_cast<char*>(words.at(i).data()));
 	}
 	args.push_back(nullptr);
@@ -65,7 +65,7 @@ int main(){
 			int selectedIndex = std::stoi((std::string)args[1]);
 			std::vector<char*> historicArgs = parseCommand(history.at(selectedIndex));
 			args.clear();
-			for (int i = 0; i < historicArgs.size(); i++)
+			for (unsigned int i = 0; i < historicArgs.size(); i++)
 			{
 				args.push_back(historicArgs[i]);
 			}
@@ -95,7 +95,7 @@ int main(){
 		}
 		else if (((std::string)args[0]).compare("history") ==0)
 		{
-			for(int i = 0; i < history.size(); i++)
+			for(unsigned int i = 0; i < history.size(); i++)
 			{
 				std::cout << "(" << i << ")" << history.at(i) << "\n";
 			}
@@ -114,7 +114,7 @@ int main(){
 			} 
 			else 
 			{//if we're the parent.
-				int* status;
+				int* status = 0;
 				waitpid(pid,status,0);
 				//stop timer.
 				auto endtime = std::chrono::steady_clock::now();
